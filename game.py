@@ -3,20 +3,24 @@ from random import randint
 
 # this turns the game persistant.  
 game_running = True
+game_results = []
 
 # this will be used to calculate the random attack from the monsters.
 def calculate_monster_attack():
     return randint(monster['attack_min'], monster['attack_max'])
 
+# Winner annoucement Function
 def game_ends(winner_name):
-    print(winner_name)
+    print(f'{winner_name} won the game')
 
 
 
 # this keeps the game running while the code below continues
 while game_running == True:
 
-    # at the end of the game this starts a new round.  
+    #counter.  Counts the rounds .
+    counter = 0
+    # at the end of the game this starts a new round.  1st Round Loop
     new_round = True
     #disctionary
     player = {
@@ -39,9 +43,11 @@ while game_running == True:
     print(player['name'] + ' has ' + str(player['health']) + ' health')
     print(monster['name'] + ' has ' + str(monster['health']) + ' health')
 
-    # keeps the game running while the conditions below are running
+    # keeps the game running while the conditions below are running.  Second (y) round loop
     while new_round == True:
-            
+        
+        #counter adds +1 per round.
+        counter = counter + 1
         player_won = False
         monster_won = False
 
@@ -52,6 +58,7 @@ while game_running == True:
         print('1) Attack')
         print('2) Heal')
         print('3) Exit Game')
+        print('4) Show Results')
         print('---' * 8)
 
 
@@ -64,7 +71,7 @@ while game_running == True:
             monster['health'] = monster['health'] - player['attack']
             if monster['health'] <= 0:
                 player_won = True
-
+            # 
             else:
                 player['health'] = player['health'] - calculate_monster_attack()
                 if player['health'] <= 0:
@@ -86,6 +93,9 @@ while game_running == True:
             game_running = False
             print('---' * 8)
             print('See you soon dick.. Bye!')
+
+        elif player_choice == '4':
+           print(game_results)
         
         # if the user inputs a invalid options.  This will return a message
         else:
@@ -96,17 +106,23 @@ while game_running == True:
             print(player['name'] + ' has ' + str(player['health']) + ' left')
             print(monster['name'] + ' has ' + str(monster['health']) +  ' left' )
             print('###' * 8)
-            
+        
+
+        #functions for the winner announements from above.  Game ending conditions
         elif player_won:
             game_ends(player['name'])
-
+            round_result = {'name': player['name'], 'health': player['health'],'round': counter}
+            game_results.append(round_result)
             new_round = False
 
         elif monster_won:
             game_ends(monster['name'])
+            round_result = {'name': monster['name'], 'health': monster['health'], 'round': counter}
+            game_results.append(round_result)
+
             new_round = False
 
-         #if player won or lost round.  run new_round
+         #New Round function from above
         if player_won == True or monster_won == True:
             new_round = False
 
