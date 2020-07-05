@@ -6,11 +6,11 @@
   <br>
 </h1>
 
-<h4 align="center">Boss Fights, PVP Duels, Random minigames.</h4>
+<h4 align="center">Random Mini Games: PvP Duels, PvE Arena, Trading</h4>
 
 <p align="center">
-  <a href="https://discord.gg/red">
-    <img src="https://discordapp.com/api/guilds/133049272517001216/widget.png?style=shield" alt="Discord Server">
+  <a href="https://discord.com/invite/S5Tnues">
+    <img src="https://discordapp.com/api/guilds/281663524323983360/widget.png?style=shield" alt="Discord Server">
   </a>
   <a href="https://www.patreon.com/Eve_Devs">
     <img src="https://img.shields.io/badge/Support-Eve!-yellow.svg" alt="Support Eve on Patreon!">
