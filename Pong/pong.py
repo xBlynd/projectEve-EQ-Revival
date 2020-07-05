@@ -39,8 +39,8 @@ ball.shape('square')
 ball.color('white')
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.5
-ball.dy = -0.5
+ball.dx = 0.3
+ball.dy = 0.3
 
 # Function
 def paddle_1_up():
@@ -100,4 +100,14 @@ while True:
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
-        
+
+
+    # Paddle collisions
+    if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() -50):
+        ball.setx(340)
+        ball.dx *= -1
+
+    # Paddle collisions
+    if ball.xcor() < -340 and ball.xcor() > -350 and (ball.ycor() < paddle_1.ycor() + 40 and ball.ycor() > paddle_1.ycor() -50):
+        ball.setx(-340)
+        ball.dx *= -1
