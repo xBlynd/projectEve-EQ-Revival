@@ -68,8 +68,8 @@ plugins directly to your Discord! A few examples are:
 
 Will add some of the intentions behind this in the future.  Really just messing around...
 
-- Install is easy....  just clone do the below in any command line.
-- `git clone https://github.com/xBlynd/projectEve-Mini-Games`
+- Install is easy....  just copy and paste the below in any command line.
+    `git clone https://github.com/xBlynd/projectEve-Mini-Games`
 -
 
 
