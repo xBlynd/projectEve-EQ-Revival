@@ -12,31 +12,21 @@
   <a href="https://discord.com/invite/S5Tnues">
     <img src="https://discordapp.com/api/guilds/281663524323983360/widget.png?style=shield" alt="Discord Server">
   </a>
-  <a href="https://www.patreon.com/Eve_Devs">
-    <img src="https://img.shields.io/badge/Support-Eve!-yellow.svg" alt="Support Eve on Patreon!">
+  <a href="https://www.xsvcommunity.com/donate">
+    <img src="https://img.shields.io/badge/Support-Eve!-yellow.svg" alt="Support xsvCommunity!">
   </a>
   <a href="https://www.python.org/downloads/">
     <img src="https://img.shields.io/badge/Made%20With-Python%203.8-blue.svg?style=for-the-badge" alt="Made with Python 3.8">
-  </a>
-  <a href="https://crowdin.com/project/red-discordbot">
-    <img src="https://d322cqt584bo4o.cloudfront.net/red-discordbot/localized.svg" alt="Localized with Crowdin">
   </a>
   <a href="https://github.com/Rapptz/discord.py/">
       <img src="https://img.shields.io/badge/discord-py-blue.svg" alt="discord.py">
   </a>
 </p>
-<p align="center">
-  <a href="https://github.com/Cog-Creators/Eve-DiscordBot/actions">
-    <img src="https://github.com/Cog-Creators/Eve-DiscordBot/workflows/Tests/badge.svg" alt="GitHub Actions">
-  </a>
-  <a href="http://red-discordbot.readthedocs.io/en/stable/?badge=stable">
-    <img src="https://readthedocs.org/projects/red-discordbot/badge/?version=stable" alt="Eve on readthedocs.org">
+  <a href="http://projectEve-games.readthedocs.io/en/stable/?badge=stable">
+    <img src="https://readthedocs.org/projects/projectEve-games/" alt="Eve on readthedocs.org">
   </a>
   <a href="https://github.com/ambv/black">
     <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style: Black">
-  </a>
-  <a href="http://makeapullrequest.com">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
   </a>
 </p>
 
@@ -45,7 +35,7 @@
   •
   <a href="#installation">Installation</a>
   •
-  <a href="http://red-discordbot.readthedocs.io/en/stable/index.html">Documentation</a>
+  <a href="http://xsvcommunity.com/docs/">Documentation</a>
   •
   <a href="#plugins">Plugins</a>
   •
@@ -62,9 +52,9 @@
 
 **The following platforms are officially supported:** 
 
-- [Windows](https://red-discordbot.readthedocs.io/en/stable/install_windows.html)
-- [MacOS](https://red-discordbot.readthedocs.io/en/stable/install_linux_mac.html)
-- [Most major linux distributions](https://red-discordbot.readthedocs.io/en/stable/install_linux_mac.html)
+- [Windows](http://xsvcommunity.com/docs/)
+- [MacOS](http://xsvcommunity.com/docs/)
+- [Most major linux distributions](http://xsvcommunity.com/docs/)
 
 
 # Game Features
