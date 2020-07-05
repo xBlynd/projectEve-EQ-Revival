@@ -17,7 +17,7 @@ def game_ends(winner_name):
 
 
 # this keeps the game running while the code below continues
-while game_running == True:
+while game_running:
 
     #counter.  Counts the rounds .
     counter = 0
@@ -50,7 +50,7 @@ while game_running == True:
     print(monster['name'] + ' has ' + str(monster['health']) + ' health')
 
     # keeps the game running while the conditions below are running.  Second (y) round loop
-    while new_round == True:
+    while new_round:
         
         #counter adds +1 per round.
         counter = counter + 1
@@ -86,11 +86,11 @@ while game_running == True:
 
         # the elif is if player input picks option 2.  This initates the heal.
         elif player_choice == '2':
-            player['health'] = player['health'] + player['heal']
+            player['health'] += player['heal']
 
             # Radommize added to attack
             monster_attack = randint(monster['attack_min'], monster['attack_max'])
-            player['health'] = player['health'] - calculate_monster_attack(monster['attack_min'], monster['attack_max'])
+            player['health'] -= calculate_monster_attack(monster['attack_min'], monster['attack_max'])
             if player['health'] <= 0:
                 monster_won = True
 
@@ -111,8 +111,8 @@ while game_running == True:
 
         if player_won == False and monster_won == False:
             print('###' * 8)
-            print(player['name'] + ' has ' + str(player['health']) + ' left')
-            print(monster['name'] + ' has ' + str(monster['health']) +  ' left' )
+            print(f'{player["name"} has {player["health"]} left')
+            print(f'{monster["name"]} has {monster["health"]} left')
             print('###' * 8)
         
 
