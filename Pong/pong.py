@@ -113,16 +113,20 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
         score_a += 1
+        pen.clear()
+        pen.write('Player 1: {} Player 2: {}'.format(score_a, score_b), align='center', font=('Courier', 24, 'normal'))
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
         score_b += 1
+        pen.clear()
+        pen.write('Player 1: {} Player 2: {}'.format(score_a, score_b), align='center', font=('Courier', 24, 'normal'))
 
     # Paddle collisions
     if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() -50):
         ball.setx(340)
-        ball.dx *= -1
+        ball.dx *= -1 
 
     # Paddle collisions
     if ball.xcor() < -340 and ball.xcor() > -350 and (ball.ycor() < paddle_1.ycor() + 40 and ball.ycor() > paddle_1.ycor() -50):
