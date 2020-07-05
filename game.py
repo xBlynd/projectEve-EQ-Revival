@@ -1,7 +1,17 @@
 from random import randint
 
+
 # this turns the game persistant.  
 game_running = True
+
+# this will be used to calculate the random attack from the monsters.
+def calculate_monster_attack():
+    return randint(monster['attack_min'], monster['attack_max'])
+
+def game_ends(winner_name):
+    print(winner_name)
+
+
 
 # this keeps the game running while the code below continues
 while game_running == True:
@@ -56,8 +66,7 @@ while game_running == True:
                 player_won = True
 
             else:
-                monster_attack = randint(monster['attack_min'], monster['attack_max'])
-                player['health'] = player['health'] - monster_attack
+                player['health'] = player['health'] - calculate_monster_attack()
                 if player['health'] <= 0:
                     monster_won = True
 
@@ -66,6 +75,7 @@ while game_running == True:
         elif player_choice == '2':
             player['health'] = player['health'] + player['heal']
 
+            # Radommize added to attack
             monster_attack = randint(monster['attack_min'], monster['attack_max'])
             player['health'] = player['health'] - monster_attack
             if player['health'] <= 0:
@@ -88,13 +98,12 @@ while game_running == True:
             print('###' * 8)
             
         elif player_won:
-            print('###' * 8)
-            print(player['name'] + ' won')
+            game_ends(player['name'])
+
             new_round = False
 
         elif monster_won:
-            print('###' * 8)
-            print('You fucking lost')
+            game_ends(monster['name'])
             new_round = False
 
          #if player won or lost round.  run new_round
