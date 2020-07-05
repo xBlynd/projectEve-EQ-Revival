@@ -3,11 +3,12 @@ from random import randint
 
 # this turns the game persistant.  
 game_running = True
+# stat manager
 game_results = []
 
 # this will be used to calculate the random attack from the monsters.
-def calculate_monster_attack():
-    return randint(monster['attack_min'], monster['attack_max'])
+def calculate_monster_attack(attack_min, attack_max):
+    return randint(attack_min, attack_max)
 
 # Winner annoucement Function
 def game_ends(winner_name):
@@ -29,13 +30,18 @@ while game_running == True:
         'heal': 16,
         'health': 100
     }
-
     monster = {
         'name': 'Drakus',
         'attack_min': 10,
         'attack_max': 20,
         'health': 100
     }
+
+    #added to help with the error on function before variable.  IDK why this works....
+    print(calculate_monster_attack(monster['attack_min'], monster['attack_max']))
+
+
+    # Player name input.  Should find a way to add this before the game starts.  Follow suit with stats page
     print('---' * 8)
     print('Enter player name')
     player['name'] = input()
@@ -73,7 +79,7 @@ while game_running == True:
                 player_won = True
             # 
             else:
-                player['health'] = player['health'] - calculate_monster_attack()
+                player['health'] = player['health'] - calculate_monster_attack(monster['attack_min'], monster['attack_max'])
                 if player['health'] <= 0:
                     monster_won = True
 
@@ -84,7 +90,7 @@ while game_running == True:
 
             # Radommize added to attack
             monster_attack = randint(monster['attack_min'], monster['attack_max'])
-            player['health'] = player['health'] - monster_attack
+            player['health'] = player['health'] - calculate_monster_attack(monster['attack_min'], monster['attack_max'])
             if player['health'] <= 0:
                 monster_won = True
 
@@ -94,8 +100,10 @@ while game_running == True:
             print('---' * 8)
             print('See you soon dick.. Bye!')
 
+        # Input option 4 to print the previous game results.  Need to put this before the game starts.  Should be able to see before join game
         elif player_choice == '4':
-           print(game_results)
+            for player_stats in game_results:
+                print(player_stats)
         
         # if the user inputs a invalid options.  This will return a message
         else:
@@ -111,12 +119,14 @@ while game_running == True:
         #functions for the winner announements from above.  Game ending conditions
         elif player_won:
             game_ends(player['name'])
+            # captures the game results for stat board
             round_result = {'name': player['name'], 'health': player['health'],'round': counter}
             game_results.append(round_result)
             new_round = False
 
         elif monster_won:
             game_ends(monster['name'])
+            # captures the game results for stat board
             round_result = {'name': monster['name'], 'health': monster['health'], 'round': counter}
             game_results.append(round_result)
 
