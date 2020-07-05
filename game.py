@@ -74,12 +74,12 @@ while game_running:
 
         #attack this monster
         if player_choice == '1':
-            monster['health'] = monster['health'] - player['attack']
+            monster['health'] -=  player['attack']
             if monster['health'] <= 0:
                 player_won = True
             # 
             else:
-                player['health'] = player['health'] - calculate_monster_attack(monster['attack_min'], monster['attack_max'])
+                player['health'] -= calculate_monster_attack(monster['attack_min'], monster['attack_max'])
                 if player['health'] <= 0:
                     monster_won = True
 
@@ -111,7 +111,7 @@ while game_running:
 
         if player_won == False and monster_won == False:
             print('###' * 8)
-            print(f'{player["name"} has {player["health"]} left')
+            print(f'{player["name"]} has {player["health"]} left')
             print(f'{monster["name"]} has {monster["health"]} left')
             print('###' * 8)
         
