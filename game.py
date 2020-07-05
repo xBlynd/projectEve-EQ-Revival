@@ -1,17 +1,7 @@
+from dict.players import *
+from dict.npc import *
 
-#disctionary
-player = {
-    'name': 'Eve',
-    'attack': 20,
-    'heal': 16,
-    'health': 100
-}
 
-monster = {
-    'name': 'Drakus',
-    'attack': 12,
-    'health': 100
-}
 
 # this turns the game persistant.  
 game_running = True
