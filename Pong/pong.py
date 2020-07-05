@@ -12,6 +12,10 @@ win.bgcolor('black')
 win.setup(width=800, height=600)
 win.tracer(0)
 
+# Score
+score_a = 0
+score_b = 0
+
 # Paddle 1
 paddle_1 = turtle.Turtle()
 paddle_1.speed(0)
@@ -41,6 +45,18 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx = 0.3
 ball.dy = 0.3
+
+
+# Pen (scoring)
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color('Pink')
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write('Player 1: 0 Player 2: 0', align='center', font=('Courier', 24, 'normal'))
+
+
 
 # Function
 def paddle_1_up():
@@ -96,11 +112,12 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx *= -1
+        score_a += 1
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
-
+        score_b += 1
 
     # Paddle collisions
     if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() -50):
