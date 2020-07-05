@@ -60,22 +60,34 @@ plugins directly to your Discord! A few examples are:
 - Evel Missions
 - Eve Battles
 - Duels
+- Arena
+- Raiding
 
 
 # Documentation
 
+Will add some of the intentions behind this in the future.  Really just messing around...
 
+- Install is easy....  just clone do the below in any command line.
+- `git clone https://github.com/xBlynd/projectEve-Mini-Games`
+-
 
 
 # Plugins
 
+Plans to make this modular to allow outside additions to the project.
 
-
+- Please look at documenation to follow the basic core logic. 
+-
+-
 
 # Join the Community
 
+This project was made to pretty much troll certain team mates in the xsvCommunity.  Anyone is welcome to join us.
 
-
+- [xsvCommunity Discord](http://discord.xsv.is)
+-
+-
 
 # License
 
