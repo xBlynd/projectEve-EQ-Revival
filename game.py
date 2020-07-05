@@ -1,4 +1,4 @@
-
+from random import randint
 
 # this turns the game persistant.  
 game_running = True
@@ -11,14 +11,15 @@ while game_running == True:
     #disctionary
     player = {
         'name': 'Eve',
-        'attack': 20,
+        'attack': 13,
         'heal': 16,
         'health': 100
     }
 
     monster = {
         'name': 'Drakus',
-        'attack': 12,
+        'attack_min': 10,
+        'attack_max': 20,
         'health': 100
     }
     print('---' * 8)
@@ -55,21 +56,20 @@ while game_running == True:
                 player_won = True
 
             else:
-                player['health'] = player['health'] - monster['attack']
+                monster_attack = randint(monster['attack_min'], monster['attack_max'])
+                player['health'] = player['health'] - monster_attack
                 if player['health'] <= 0:
                     monster_won = True
 
-            #random print check to test functions.  Remove later
-            # print('---' * 8)
-            # print('You attacked', monster['name'], monster['health'], ' HP left.')
-            # print(monster['name'], 'attacked you ', player['health'], ' HP left.')
 
         # the elif is if player input picks option 2.  This initates the heal.
         elif player_choice == '2':
-            player['health'] = player['health'] + player['health']
-            print('---' * 8)
-            print('Healed')
-            print(player['health'])
+            player['health'] = player['health'] + player['heal']
+
+            monster_attack = randint(monster['attack_min'], monster['attack_max'])
+            player['health'] = player['health'] - monster_attack
+            if player['health'] <= 0:
+                monster_won = True
 
         elif player_choice == '3':
             new_round = False
@@ -83,7 +83,7 @@ while game_running == True:
 
         if player_won == False and monster_won == False:
             print('###' * 8)
-            print(player['name'] + ' has ' + str(player['health']) + ' eft')
+            print(player['name'] + ' has ' + str(player['health']) + ' left')
             print(monster['name'] + ' has ' + str(monster['health']) +  ' left' )
             print('###' * 8)
             
