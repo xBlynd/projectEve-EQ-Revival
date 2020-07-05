@@ -30,7 +30,7 @@
   •
   <a href="#installation">Installation</a>
   •
-  <a href="http://xsvcommunity.com/docs/">Documentation</a>
+  <a href="#documentation">Documentation</a>
   •
   <a href="#plugins">Plugins</a>
   •
@@ -62,6 +62,17 @@ plugins directly to your Discord! A few examples are:
 - Duels
 
 
+# Documentation
+
+
+
+
+# Plugins
+
+
+
+
+# Join the Community
 
 
 
