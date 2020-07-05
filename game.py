@@ -17,7 +17,7 @@ def game_ends(winner_name):
 
 
 # this keeps the game running while the code below continues
-while game_running == True:
+while game_running:
 
     #counter.  Counts the rounds .
     counter = 0
@@ -50,7 +50,7 @@ while game_running == True:
     print(monster['name'] + ' has ' + str(monster['health']) + ' health')
 
     # keeps the game running while the conditions below are running.  Second (y) round loop
-    while new_round == True:
+    while new_round:
         
         #counter adds +1 per round.
         counter = counter + 1
