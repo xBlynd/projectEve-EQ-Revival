@@ -2,7 +2,7 @@
   <br>
 
   <br>
-  Eve's Guluag
+  projectEve Mini-Games
   <br>
 </h1>
 
