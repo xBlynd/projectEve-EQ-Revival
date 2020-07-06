@@ -2,11 +2,11 @@
   <br>
 
   <br>
-  projectEve Mini-Games
+  projectEve Pong
   <br>
 </h1>
 
-<h4 align="center">Random Mini Games: PvP Duels, PvE Arena, Trading</h4>
+<h4 align="center"> well its pong. so ...</h4>
 
 <p align="center">
   <a href="https://discord.com/invite/S5Tnues">
@@ -57,11 +57,8 @@
 Eve is fully modular, allowing you to load and unload plugins of your choice, and install 3rd party
 plugins directly to your Discord! A few examples are:
 
-- Evel Missions
-- Eve Battles
-- Duels
-- Arena
-- Raiding
+- custom ball physics
+- custom fields
 
 
 # Documentation
