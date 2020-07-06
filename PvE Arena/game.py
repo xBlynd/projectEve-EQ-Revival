@@ -1,5 +1,5 @@
 from random import randint
-
+import json
 
 # this turns the game persistant.  
 game_running = True
@@ -14,7 +14,27 @@ def calculate_monster_attack(attack_min, attack_max):
 def game_ends(winner_name):
     print(f'{winner_name} won the game')
 
+# Loads the local storage into memory
+def loadLocalStorage():
+    localStorageFilename = 'localstorage.json'
+    try:
+        with open(localStorageFilename, 'r') as infile:
+            return json.load(infile)
+    except Exception as e:
+        print(f'Error loading: {e}')
+        return None
 
+# Saves the local storage back into memory
+# Do your code here pliz
+def saveLocalStorage(obj):
+    saveStorageFilename = 'localstorage.json'
+    try:
+        # Save here
+        with open(saveStorageFilename, 'w') as outfile:
+            json.dump(obj, outfile, indent=4)
+
+    except Exception as e:
+        print(f'Failed to save file: {e}')
 
 # this keeps the game running while the code below continues
 while game_running:
@@ -24,30 +44,34 @@ while game_running:
     # at the end of the game this starts a new round.  1st Round Loop
     new_round = True
     #disctionary
-    player = {
-        'name': 'Eve',
-        'attack': 13,
-        'heal': 16,
-        'health': 100
-    }
-    monster = {
-        'name': 'Drakus',
-        'attack_min': 10,
-        'attack_max': 20,
-        'health': 100
-    }
+
+    # Load data and make sure it exists
+    gameData = loadLocalStorage()
+    if 'player' not in gameData:
+        gameData['player'] = {
+            'name': 'Eve',
+            'attack': 13,
+            'heal': 16,
+            'health': 100
+        }
+    if 'monster' not in gameData:
+        gameData['monster'] = {
+            'name': 'Drakus',
+            'attack_min': 10,
+            'attack_max': 20,
+            'health': 100
+        }
 
     #added to help with the error on function before variable.  IDK why this works....
-    print(calculate_monster_attack(monster['attack_min'], monster['attack_max']))
+    print(calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max']))
 
 
     # Player name input.  Should find a way to add this before the game starts.  Follow suit with stats page
     print('---' * 8)
-    print('Enter player name')
-    player['name'] = input()
+    gameData['player']['name'] = input('Enter Name: ')
 
-    print(player['name'] + ' has ' + str(player['health']) + ' health')
-    print(monster['name'] + ' has ' + str(monster['health']) + ' health')
+    print(f'{gameData["player"]["name"]} has {gameData["player"]["health"]} health')
+    print(f'{gameData["monster"]["name"]} has {gameData["monster"]["health"]} health')
 
     # keeps the game running while the conditions below are running.  Second (y) round loop
     while new_round:
@@ -74,24 +98,24 @@ while game_running:
 
         #attack this monster
         if player_choice == '1':
-            monster['health'] -=  player['attack']
-            if monster['health'] <= 0:
+            gameData['monster']['health'] -= gameData['player']['attack']
+            if gameData['monster']['health'] <= 0:
                 player_won = True
             # 
             else:
-                player['health'] -= calculate_monster_attack(monster['attack_min'], monster['attack_max'])
-                if player['health'] <= 0:
+                gameData['player']['health'] -= calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
+                if gameData['player']['health'] <= 0:
                     monster_won = True
 
 
         # the elif is if player input picks option 2.  This initates the heal.
         elif player_choice == '2':
-            player['health'] += player['heal']
+            gameData['player']['health'] += player['heal']
 
             # Radommize added to attack
-            monster_attack = randint(monster['attack_min'], monster['attack_max'])
-            player['health'] -= calculate_monster_attack(monster['attack_min'], monster['attack_max'])
-            if player['health'] <= 0:
+            monster_attack = randint(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
+            gameData['player']['health'] -= calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
+            if gameData['player']['health'] <= 0:
                 monster_won = True
 
         elif player_choice == '3':
@@ -109,25 +133,25 @@ while game_running:
         else:
             print('not a option try again.')
 
-        if player_won == False and monster_won == False:
+        if (not player_won) and (not monster_won):
             print('###' * 8)
-            print(f'{player["name"]} has {player["health"]} left')
-            print(f'{monster["name"]} has {monster["health"]} left')
+            print(f'{gameData["player"]["name"]} has {gameData["player"]["health"]} left')
+            print(f'{gameData["monster"]["name"]} has {gameData["monster"]["health"]} left')
             print('###' * 8)
         
 
         #functions for the winner announements from above.  Game ending conditions
         elif player_won:
-            game_ends(player['name'])
+            game_ends(gameData['player']['name'])
             # captures the game results for stat board
-            round_result = {'name': player['name'], 'health': player['health'],'round': counter}
+            round_result = {'name': gameData['player']['name'], 'health': gameData['player']['health'],'round': counter}
             game_results.append(round_result)
             new_round = False
 
         elif monster_won:
-            game_ends(monster['name'])
+            game_ends(gameData['monster']['name'])
             # captures the game results for stat board
-            round_result = {'name': monster['name'], 'health': monster['health'], 'round': counter}
+            round_result = {'name': gameData['monster']['name'], 'health': gameData['monster']['health'], 'round': counter}
             game_results.append(round_result)
 
             new_round = False
@@ -136,3 +160,4 @@ while game_running:
         if player_won == True or monster_won == True:
             new_round = False
 
+    saveLocalStorage(gameData)

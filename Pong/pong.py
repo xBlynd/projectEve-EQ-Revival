@@ -3,7 +3,7 @@
 
 #building the app inside of turtle for a visual aid.  bult in python3
 import turtle
-
+import winsound
 ##  Classes will be added later.
 # Controls the visual screen
 win = turtle.Screen()
@@ -43,8 +43,8 @@ ball.shape('square')
 ball.color('white')
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.3
-ball.dy = 0.3
+ball.dx = 1
+ball.dy = 1
 
 
 # Pen (scoring)
@@ -104,10 +104,12 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     if ball.xcor() > 390:
         ball.goto(0, 0)
@@ -127,8 +129,10 @@ while True:
     if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() -50):
         ball.setx(340)
         ball.dx *= -1 
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     # Paddle collisions
     if ball.xcor() < -340 and ball.xcor() > -350 and (ball.ycor() < paddle_1.ycor() + 40 and ball.ycor() > paddle_1.ycor() -50):
         ball.setx(-340)
         ball.dx *= -1
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
