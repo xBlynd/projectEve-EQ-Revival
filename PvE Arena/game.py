@@ -1,4 +1,8 @@
+# import only system from os 
+import os
+
 from random import randint
+import time
 import json
 
 # this turns the game persistant.  
@@ -13,6 +17,7 @@ def calculate_monster_attack(attack_min, attack_max):
 # Winner annoucement Function
 def game_ends(winner_name):
     print(f'{winner_name} won the game')
+    print('projectEve is made with ', u"\u2661")
 
 # Loads the local storage into memory
 def loadLocalStorage():
@@ -64,10 +69,12 @@ while game_running:
         }
 
     #added to help with the error on function before variable.  IDK why this works....
-    print(calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max']))
+    # print(calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max']))
 
 
     # Player name input.  Should find a way to add this before the game starts.  Follow suit with stats page
+
+    print('projectEvolved Boss Battle!')
     print('---' * 8)
     gameData['player']['name'] = input('Enter Name: ')
 
@@ -102,7 +109,6 @@ while game_running:
             gameData['monster']['health'] -= gameData['player']['attack']
             if gameData['monster']['health'] <= 0:
                 player_won = True
-            # 
             else:
                 gameData['player']['health'] -= calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
                 if gameData['player']['health'] <= 0:
@@ -111,7 +117,7 @@ while game_running:
 
         # the elif is if player input picks option 2.  This initates the heal.
         elif player_choice == '2':
-            gameData['player']['health'] += player['heal']
+            gameData['player']['health'] +=gameData['player']['heal']
 
             # Radommize added to attack
             monster_attack = randint(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
@@ -135,6 +141,7 @@ while game_running:
             print('not a option try again.')
 
         if (not player_won) and (not monster_won):
+            os.system('cls')
             print('###' * 8)
             print(f'{gameData["player"]["name"]} has {gameData["player"]["health"]} left')
             print(f'{gameData["monster"]["name"]} has {gameData["monster"]["health"]} left')
@@ -143,22 +150,23 @@ while game_running:
 
         #functions for the winner announements from above.  Game ending conditions
         elif player_won:
+            os.system('cls')
             game_ends(gameData['player']['name'])
             # captures the game results for stat board
             round_result = {'name': gameData['player']['name'], 'health': gameData['player']['health'],'round': counter}
             game_results.append(round_result)
+            time.sleep(5)
             new_round = False
 
         elif monster_won:
+            os.system('cls')
             game_ends(gameData['monster']['name'])
             # captures the game results for stat board
             round_result = {'name': gameData['monster']['name'], 'health': gameData['monster']['health'], 'round': counter}
             game_results.append(round_result)
-
+            time.sleep(5)
             new_round = False
 
          #New Round function from above
         if player_won == True or monster_won == True:
             new_round = False
-
-    saveLocalStorage(gameData)
