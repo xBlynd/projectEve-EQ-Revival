@@ -46,6 +46,7 @@ while game_running:
     #disctionary
 
     # Load data and make sure it exists
+    # gameData = loadLocalStorage()    //this line has been removed until storage is functioning correctly
     gameData = loadLocalStorage()
     if 'player' not in gameData:
         gameData['player'] = {
