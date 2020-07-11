@@ -1,27 +1,60 @@
-function monsterBaseAttackRandom(baseAttackMin, baseAttackMax) {
-	return Math.floor(Math.random() * (baseAttackMin - baseAttackMax))
+const textElement = document.getElementById('text')
+const optionButtonsElement = document.getElementById('option-buttons')
+
+let state = {}
+
+function startGame() {
+  state = {}
+  showTextNode(1)
 }
 
-console.log(monsterBaseAttackRandom(gameData['monster']['attack_min'], gameData['monster']['attack_max']))
-const owner = {
-	name: "blynd",
-	startingRole: "Game Dev",
-	description: "I break a lot."
+function showTextNode(textNodeIndex) {
+  const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
+  textElement.innerText = textNode.text
+  while (optionButtonsElement.firstChild) {
+    optionButtonsElement.removeChild(optionButtonsElement.firstChild)
+  }
+
+  textNode.options.forEach(option => {
+    if (showOption(option)) {
+      const button = document.createElement('button')
+      button.innerText = option.text
+      button.classList.add('btn')
+      button.addEventListener('click', () => selectOption(option))
+      optionButtonsElement.appendChild(button)
+    }
+  })
 }
 
-const Warrior = {
-	baseHealth: 100,
-	baseStamina: 15,
-	baseArmor: 17,
-	baseAttackMin: 10,
-	baseAttackMax: 20
+function showOption(option) {
+  return option.requiredState == null || option.requiredState(state)
 }
 
-const players = {
-	startingRole: "Guest",
-	playerBaseHealth: 100,
-	playerBaseDamage: 11,
-	playerBaseStamina: 14,
-	playerBaseArmor: 10
+function selectOption(option) {
+  const nextTextNodeId = option.nextText
+  if (nextTextNodeId <= 0) {
+    return startGame()
+  }
+  state = Object.assign(state, option.setState)
+  showTextNode(nextTextNodeId)
 }
-console.log(owner, players);
+
+const textNodes = [
+  {
+    id: 1,
+    text: 'You are being approached by a hostile.  What do you do?',
+    options: [
+      {
+        text: 'Fists up',
+        setState: { blueGoo: true },
+        nextText: 2
+      },
+      {
+        text: 'Run away.',
+        nextText: 2
+      }
+    ]
+  }
+]
+
+startGame()
