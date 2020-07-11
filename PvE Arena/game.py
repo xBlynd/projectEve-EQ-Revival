@@ -1,6 +1,7 @@
 # import only system from os 
 import os
 
+#used for the random attacks.  Need to implement to heal.
 from random import randint
 import time
 import json
@@ -13,6 +14,9 @@ game_results = []
 # this will be used to calculate the random attack from the monsters.
 def calculate_monster_attack(attack_min, attack_max):
     return randint(attack_min, attack_max)
+
+def calculate_player_heal(player_heal_min, player_heal_max):
+    return randint(player_heal_min, player_heal_max)
 
 # Winner annoucement Function
 def game_ends(winner_name):
@@ -52,22 +56,42 @@ while game_running:
 
     # Load data and make sure it exists
     # gameData = loadLocalStorage()    //this line has been removed until storage is functioning correctly
+    # There has to be a better way to categorize these.  
+    # Levels or masterclass of some sorts needs to be added.  Not quite sure how to achive this take.  Maybe a multiplier to all traits above the class tier???
     gameData = loadLocalStorage()
     if 'player' not in gameData:
         gameData['player'] = {
-            'name': 'Eve',
+            'name': '',
             'attack': 13,
             'heal': 16,
-            'health': 100
-        }
-    if 'monster' not in gameData:
-        gameData['monster'] = {
-            'name': 'Drakus',
-            'attack_min': 10,
-            'attack_max': 20,
-            'health': 100
+            'health': 100,
+            'stamina': 10,
+            'armor': 11
         }
 
+# Need to add randomize on race encounter.  However when a map is built we will move it to area placements.
+    if 'monster' not in gameData:
+        gameData['warrior'] = {
+            'name': 'warrior',
+            'race': ['human', 'barbarian', 'orc', 'troll', 'elf', 'woodelf', 'nightelf', 'dwarf'],
+            'attack_min': 10,
+            'attack_max': 20,
+            'health': 100,
+            'stamina': 10,
+            'armor': 11
+        }
+
+#Will have to eventually seperate animals by type as some are stronger then others.  Need to research the best way to create this as to save time..
+    if 'animals' not in gameData:
+        gameData['animals'] = {
+            'type':
+            'health_min': 55,
+            'health_max': 100,
+            'stamina_min': 60,
+            'stamina_max': 100,
+            'attack_min': 3,
+            'attack_max': 20
+        }
     #added to help with the error on function before variable.  IDK why this works....
     # print(calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max']))
 
@@ -170,3 +194,6 @@ while game_running:
          #New Round function from above
         if player_won == True or monster_won == True:
             new_round = False
+
+
+d
