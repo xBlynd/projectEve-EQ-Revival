@@ -57,8 +57,9 @@
 Eve is fully modular, allowing you to load and unload plugins of your choice, and install 3rd party
 plugins directly to your Discord! A few examples are:
 
-- Evel Missions
-- Eve Battles
+- Semi open world (inconsole?)
+- Adventures
+- Random battle encounters
 - Duels
 - Arena
 - Raiding
@@ -66,15 +67,15 @@ plugins directly to your Discord! A few examples are:
 
 # Documentation
 
-# NAME:  What do we name this project?  
-
-# Goal:  To build a base game essientally like EQOA.  I don't plan on being a designer so im limited.  However this is mainly to continue to grow my skillset.
+# Project Name:  
+What do we name this project?  
 
 
 # Road Map
 
 # Game Intro
-    Game name and a brief desciption or log transition to learn.
+
+Game name and a brief desciption or log transition to learn.
 
     - Menu Options
         - Start New Game
@@ -84,44 +85,51 @@ plugins directly to your Discord! A few examples are:
         - 
 
 # New Game
-    - Race Selection
-        - Erudite, Barbarian, Elf, Night Elf, Wood Elf, Dward, Orc, Troll, Human
-    - Class Selection
-        - Warrior, Cleric, Shaman, Rogue, Monk, Druid, Magician, Wizard,Necromancer
-        - Each class to be given base stat and abilities
-    - Stats / Class mastery Stats
-        - Each class will have a set ammount of stat points to add as specilization.  15?
-        - Each class gets a multiplier for certain stat types
-    - Abilities
-        - Race Abilities
-        - Class Abilities
+
+
+- Race Selection
+    - Erudite, Barbarian, Elf, Night Elf, Wood Elf, Dward, Orc, Troll, Human
+- Class Selection
+    - Warrior, Cleric, Shaman, Rogue, Monk, Druid, Magician, Wizard,Necromancer
+    - Each class to be given base stat and abilities
+- Stats / Class mastery Stats
+    - Each class will have a set ammount of stat points to add as specilization.  15?
+    - Each class gets a multiplier for certain stat types
+- Abilities
+    - Race Abilities
+    - Class Abilities
 
 # Game Enterance
-    - Under construction.  Ideas pending.
+
+ - Under construction.  Ideas pending.
 
 # Mob initiations
 
+ - Under construction.  Ideas pending.
 
 # Boss Encounters
 
+ - Under construction.  Ideas pending.
 
 # Item / Loot system
 
+ - Under construction.  Ideas pending.
 
 # Dungeons / Raids 
 
+ - Under construction.  Ideas pending.
 
 # Events
 
-
+ - Under construction.  Ideas pending.
 
 # Market PvE
 
-
+ - Under construction.  Ideas pending.
 
 # Crafting
     
-
+ - Under construction.  Ideas pending.
 
 # Plugins
 
