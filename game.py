@@ -1,6 +1,7 @@
 # import only system from os 
 import os
 
+# used for the random attacks.  Need to implement to heal.
 from random import randint
 import time
 import json
@@ -10,9 +11,12 @@ game_running = True
 # stat manager
 game_results = []
 
-# this will be used to calculate the random attack from the monsters.
-def calculate_monster_attack(attack_min, attack_max):
+# this will be used to calculate the random attack from the warriors.
+def calculate_warrior_attack(attack_min, attack_max):
     return randint(attack_min, attack_max)
+
+def calculate_player_heal(heal_min, heal_max):
+    return randint(heal_min, heal_max)
 
 # Winner annoucement Function
 def game_ends(winner_name):
@@ -52,24 +56,46 @@ while game_running:
 
     # Load data and make sure it exists
     # gameData = loadLocalStorage()    //this line has been removed until storage is functioning correctly
+    # There has to be a better way to categorize these.  
+    # Levels or masterclass of some sorts needs to be added.  Not quite sure how to achive this take.  Maybe a multiplier to all traits above the class tier???
     gameData = loadLocalStorage()
     if 'player' not in gameData:
         gameData['player'] = {
-            'name': 'Eve',
+            'name': '',
             'attack': 13,
             'heal': 16,
-            'health': 100
-        }
-    if 'monster' not in gameData:
-        gameData['monster'] = {
-            'name': 'Drakus',
-            'attack_min': 10,
-            'attack_max': 20,
-            'health': 100
+            'heal_min': 14,
+            'heal_max': 20,
+            'health': 100,
+            'stamina': 10,
+            'armor': 11
         }
 
+# Need to add randomize on race encounter.  However when a map is built we will move it to area placements.
+    if 'warrior' not in gameData:
+        gameData['warrior'] = {
+            'name': 'warrior',
+            'race': ['human', 'barbarian', 'orc', 'troll', 'elf', 'woodelf', 'nightelf', 'dwarf'],
+            'attack_min': 10,
+            'attack_max': 20,
+            'health': 100,
+            'stamina': 10,
+            'armor': 11
+        }
+
+#Will have to eventually seperate animals by type as some are stronger then others.  Need to research the best way to create this as to save time..
+    if 'animals' not in gameData:
+        gameData['animals'] = {
+            'type': '',
+            'health_min': 55,
+            'health_max': 100,
+            'stamina_min': 60,
+            'stamina_max': 100,
+            'attack_min': 3,
+            'attack_max': 20
+        }
     #added to help with the error on function before variable.  IDK why this works....
-    # print(calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max']))
+    # print(calculate_warrior_attack(gameData['warrior']['attack_min'], gameData['warrior']['attack_max']))
 
 
     # Player name input.  Should find a way to add this before the game starts.  Follow suit with stats page
@@ -79,7 +105,7 @@ while game_running:
     gameData['player']['name'] = input('Enter Name: ')
 
     print(f'{gameData["player"]["name"]} has {gameData["player"]["health"]} health')
-    print(f'{gameData["monster"]["name"]} has {gameData["monster"]["health"]} health')
+    print(f'{gameData["warrior"]["name"]} has {gameData["warrior"]["health"]} health')
 
     # keeps the game running while the conditions below are running.  Second (y) round loop
     while new_round:
@@ -87,7 +113,7 @@ while game_running:
         #counter adds +1 per round.
         counter = counter + 1
         player_won = False
-        monster_won = False
+        warrior_won = False
 
         #prints input options.  Has to be a better way to do this.
         print('---' * 8)
@@ -104,26 +130,27 @@ while game_running:
         player_choice = input()
 
 
-        #attack this monster
+        #attack this warrior
         if player_choice == '1':
-            gameData['monster']['health'] -= gameData['player']['attack']
-            if gameData['monster']['health'] <= 0:
+            gameData['warrior']['health'] -= gameData['player']['attack']
+            if gameData['warrior']['health'] <= 0:
                 player_won = True
             else:
-                gameData['player']['health'] -= calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
+                gameData['player']['health'] -= calculate_warrior_attack(gameData['warrior']['attack_min'], gameData['warrior']['attack_max'])
                 if gameData['player']['health'] <= 0:
-                    monster_won = True
+                    warrior_won = True
 
 
         # the elif is if player input picks option 2.  This initates the heal.
         elif player_choice == '2':
-            gameData['player']['health'] +=gameData['player']['heal']
+            player_heal = randint(gameData['player']['heal_min'], gameData['player']['heal_max'])
+            gameData['player']['health'] +=calculate_player_heal(gameData['player']['heal_min'], gameData['player']['heal_max'])
 
             # Radommize added to attack
-            monster_attack = randint(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
-            gameData['player']['health'] -= calculate_monster_attack(gameData['monster']['attack_min'], gameData['monster']['attack_max'])
+            warrior_attack = randint(gameData['warrior']['attack_min'], gameData['warrior']['attack_max'])
+            gameData['player']['health'] -= calculate_warrior_attack(gameData['warrior']['attack_min'], gameData['warrior']['attack_max'])
             if gameData['player']['health'] <= 0:
-                monster_won = True
+                warrior_won = True
 
         elif player_choice == '3':
             new_round = False
@@ -140,11 +167,11 @@ while game_running:
         else:
             print('not a option try again.')
 
-        if (not player_won) and (not monster_won):
+        if (not player_won) and (not warrior_won):
             os.system('cls')
             print('###' * 8)
             print(f'{gameData["player"]["name"]} has {gameData["player"]["health"]} left')
-            print(f'{gameData["monster"]["name"]} has {gameData["monster"]["health"]} left')
+            print(f'{gameData["warrior"]["name"]} has {gameData["warrior"]["health"]} left')
             print('###' * 8)
         
 
@@ -158,15 +185,18 @@ while game_running:
             time.sleep(5)
             new_round = False
 
-        elif monster_won:
+        elif warrior_won:
             os.system('cls')
-            game_ends(gameData['monster']['name'])
+            game_ends(gameData['warrior']['name'])
             # captures the game results for stat board
-            round_result = {'name': gameData['monster']['name'], 'health': gameData['monster']['health'], 'round': counter}
+            round_result = {'name': gameData['warrior']['name'], 'health': gameData['warrior']['health'], 'round': counter}
             game_results.append(round_result)
             time.sleep(5)
             new_round = False
 
          #New Round function from above
-        if player_won == True or monster_won == True:
+        if player_won == True or warrior_won == True:
             new_round = False
+
+
+d
