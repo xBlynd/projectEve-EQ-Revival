@@ -2,7 +2,7 @@
   <br>
 
   <br>
-  projectEve Arena
+  projectRevival
   <br>
 </h1>
 
@@ -15,8 +15,8 @@
   <a href="https://www.xsvcommunity.com/donate">
     <img src="https://img.shields.io/badge/Support-Eve!-yellow.svg" alt="Support xsvCommunity!">
   </a>
-  <a href="https://www.python.org/downloads/">
-    <img src="https://img.shields.io/badge/Made%20With-Python%203.8-blue.svg?style=for-the-badge" alt="Made with Python 3.8">
+  <a href="https://nodejs.org/en/">
+    <img src="https://img.shields.io/badge/Made%20With-Javascript%203.8-blue.svg?style=for-the-badge" alt="Powered by NodeJS and JS">
   </a>
   <a href="https://github.com/Rapptz/discord.py/">
       <img src="https://img.shields.io/badge/discord-py-blue.svg" alt="discord.py">
