@@ -15,8 +15,11 @@
   <a href="https://www.xsvcommunity.com/donate">
     <img src="https://img.shields.io/badge/Support-Eve!-yellow.svg" alt="Support xsvCommunity!">
   </a>
-  <a href="https://nodejs.org/en/">
-    <img src="https://img.shields.io/badge/Made%20With-Javascript%203.8-blue.svg?style=for-the-badge" alt="Powered by NodeJS and JS">
+  <a href="https://www.javascript.com/">
+    <img src="https://img.shields.io/badge/Made%20With-Javascript%203.8-pink.svg?style=for-the-badge" alt="Written in Javascript">
+  </a>
+    <a href="https://nodejs.org/en/">
+    <img src="https://img.shields.io/badge/Powered-by%20NoeJS%203.8-blue.svg?style=for-the-badge" alt="Powered by NodeJS">
   </a>
   <a href="https://github.com/Rapptz/discord.py/">
       <img src="https://img.shields.io/badge/discord-py-blue.svg" alt="discord.py">
